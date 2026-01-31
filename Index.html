@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mijn Valentijn 💖</title>
+        <style>
+            body {
+                background-color:#ffd6e8;
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0; 
+            }
+
+            .card {
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                text-align: center;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+                width: 320px;
+            }
+
+            .bear {
+               font-size: 80px; 
+            }
+
+            h1 {
+                font-size: 22px;
+                margin-bottom: 30px;
+            }
+
+            .buttons {
+                position: relative;
+                height: 60px;
+            }
+
+            button {
+                padding: 10px 22px;
+                border: none;
+                border-radius: 20px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            #yes {
+                background-color: #ff4d6d;
+                color: white;
+                margin-right: 10px;
+            }
+
+            #no {
+                background-color: #ccc;
+                position: absolute;
+            }
+            .hint {
+    font-size: 12px;
+    color: #888;
+    margin-top: 12px;
+    font-style: italic;
+}
+        </style>
+    </head>
+
+    <body>
+        <div class="card">
+            <div class="bear">🐱💖</div>
+            <h1>Danique, wil jij mijn valentijn zijn?</h1>
+
+            <div class="buttons">
+                <button id="yes" onclick="yesClicked()">Ja</button>
+                <button id="no" onmouseover="moveNo()">Nee</button>
+            </div>
+        </div>
+<p class="hint">nee ziet er een beetje verlegen uit</p>
+        <script>
+function yesClicked() {
+    const form = document.getElementById("valentijnForm");
+
+    fetch("https://formspree.io/f/mlgnqzbd", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json"
+        },
+        body: new FormData(form)
+    });
+
+    // Liefdevolle boodschap (zij ziet alleen dit ❤️)
+    document.body.innerHTML = `
+        <div style="
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            background:#ffd6e8;
+            font-family:Arial;
+            text-align:center;">
+            <h1>YAY!!! 💕🥰<br>Ik wist het!!! I love you!!!</h1>
+        </div>
+    `;
+}
+
+
+            function moveNo() {
+                const noBtn = document.getElementById("no");
+                const x = Math.random() * 200 - 100;
+                const y = Math.random() * 50;
+                noBtn.style.transform = `translate(${x}px, ${y}px)`;
+            }
+        </script>
+        <form id="valentijnForm">
+            <input type="hidden" name="antwoord" value="JA">
+            <input type="hidden" name="bericht" value="Ze heeft JA gezegd 💖">
+        </form>
+    </body>
+</html>
